@@ -15,7 +15,7 @@ public class ColorComparison implements Const{
      */
     public static boolean isSimilarColor(Color first, Color second) {
         if (first.getAlpha() < ALPHA && second.getAlpha() < ALPHA) return true;
-        if(first.getAlpha() > ALPHA && second.getAlpha() > ALPHA) {
+        if (first.getAlpha() > ALPHA && second.getAlpha() > ALPHA) {
             double result = (getRelativeBrightness(first) + 0.05)
                     / (getRelativeBrightness(second) + 0.05);
             result = result > 1 ? result : 1 / result;
