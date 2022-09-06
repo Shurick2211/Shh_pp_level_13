@@ -74,7 +74,7 @@ public class SearchEngine implements Const {
       nodes = new Node[image.getWidth() / STEP][image.getHeight() / STEP];
       for (int x = 0; x < nodes.length; x++) {
         for (int y = 0; y < nodes[0].length; y++) {
-          nodes[x][y] = new Node(x, y, new Color(image.getRGB(x * STEP, y * STEP)));
+          nodes[x][y] = new Node(x, y, new Color(image.getRGB(x * STEP, y * STEP), true));
           if (x > 0 && x < nodes.length - 1) {
             nodes[x][y].setLeftNode(nodes[x - 1][y]);
             nodes[x - 1][y].setRightNode(nodes[x][y]);
