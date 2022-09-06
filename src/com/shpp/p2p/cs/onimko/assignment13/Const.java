@@ -9,9 +9,9 @@ public interface Const {
   /**Step for search*/
   int STEP = 3;
   /**The contrast ratio*/
-  double CONTRAST_RATIO = 1.7;
+  double CONTRAST_RATIO = 1.72;
   /**The border for get the background color*/
-  int BORDER = 3;
+  int BORDER = 4;
   /**The minimum value of alpha-channel*/
   int ALPHA = 100;
 }
