@@ -71,7 +71,6 @@ public class SearchEngine implements Const {
     Node[][] nodes = null;
     try {
       BufferedImage image = ImageIO.read(new File(fileName));
-
       nodes = new Node[image.getWidth() / STEP][image.getHeight() / STEP];
       for (int x = 0; x < nodes.length; x++) {
         for (int y = 0; y < nodes[0].length; y++) {
@@ -102,19 +101,23 @@ public class SearchEngine implements Const {
    */
   private int countSilhouettes(){
     return (int) silhouettesAndBackground.stream()
-        .filter(a -> a.size() > SIZE_OBJECT
-            && ColorComparison.isSimilarColor(a.stream().findFirst().get().getColor(), getSilhouettesColor()))
-        .count();
+            .filter(a -> a.size() > SIZE_OBJECT
+                    && !ColorComparison.isSimilarColor(a.stream().findFirst().get().getColor()
+                    ,getBackgroundColor())).count();
   }
 
   /**
-   * Method returns the color of silhouettes of the image.
+   * Method returns the color of background of the image.
    * @return the color of objects.
    */
-  private Color getSilhouettesColor() {
+  private Color getBackgroundColor() {
+    int numberOfAlpha = (int) borders.stream()
+            .filter(n -> n.getColor().getAlpha() < ALPHA)
+            .count();
+    if (numberOfAlpha > borders.size()/2) return new Color(0,0,0,0);
     int numberOfWhite = (int) borders.stream()
-        .filter(n -> ColorComparison.isSimilarColor(n.getColor(),Color.WHITE))
-        .count();
-    return borders.size() / 2 < numberOfWhite ? Color.BLACK : Color.WHITE;
+            .filter(f -> ColorComparison.isSimilarColor(f.getColor(),Color.WHITE))
+            .count();
+    return borders.size() / 2 < numberOfWhite ? Color.WHITE : Color.BLACK;
   }
 }

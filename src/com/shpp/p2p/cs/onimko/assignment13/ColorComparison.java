@@ -14,10 +14,14 @@ public class ColorComparison implements Const{
      * @return true or false
      */
     public static boolean isSimilarColor(Color first, Color second) {
-        double result = (getRelativeBrightness(first) + 0.05)
-                /(getRelativeBrightness(second) + 0.05);
-        result = result > 1 ? result : 1/result;
-        return result < CONTRAST_RATIO;
+        if (first.getAlpha() < ALPHA && second.getAlpha() < ALPHA) return true;
+        if(first.getAlpha() > ALPHA && second.getAlpha() > ALPHA) {
+            double result = (getRelativeBrightness(first) + 0.05)
+                    / (getRelativeBrightness(second) + 0.05);
+            result = result > 1 ? result : 1 / result;
+            return result < CONTRAST_RATIO;
+        }
+        return false;
     }
 
     /**
@@ -26,10 +30,9 @@ public class ColorComparison implements Const{
      * @return the relative brightness.
      */
     private static double getRelativeBrightness(Color color) {
-        return color != null ? 0.2126 * getRelativeColor(color.getRed())
+        return  0.2126 * getRelativeColor(color.getRed())
                 + 0.7152 * getRelativeColor(color.getGreen())
-                + 0.0722 * getRelativeColor(color.getBlue())
-                : 0.0;
+                + 0.0722 * getRelativeColor(color.getBlue());
     }
 
     /**
