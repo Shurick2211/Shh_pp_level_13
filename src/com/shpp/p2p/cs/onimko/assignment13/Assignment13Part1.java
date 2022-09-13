@@ -23,9 +23,6 @@ public class Assignment13Part1 implements Const{
    * @return the file's name.
    */
   private static String getFileName(String[] args) {
-    String fileName;
-    if (args.length == 0)  fileName = "test.jpg";
-    else fileName = args[0].replaceAll(" ","");
-    return fileName;
+    return args.length == 0 ? "test.jpg" : args[0].trim();
   }
 }
