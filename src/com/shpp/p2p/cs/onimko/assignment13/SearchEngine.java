@@ -44,19 +44,19 @@ public class SearchEngine implements Const {
    * @param ns the collection for saving pixels.
    */
   private void bfs(Node node, HashSet<Node> ns ) {
-    ArrayDeque<Node> stack = new ArrayDeque<>();
-    stack.addFirst(node);
-      while (!stack.isEmpty()){
-        node = stack.pollLast();
+    ArrayDeque<Node> queue = new ArrayDeque<>();
+    queue.addLast(node);
+      while (!queue.isEmpty()){
+        node = queue.pollFirst();
         if (!ns.contains(node)) {
           if (node.getRightNode() != null && ColorComparison.isSimilarColor(node.getColor(), node.getRightNode().getColor()))
-            stack.addFirst(node.getRightNode());
+            queue.addLast(node.getRightNode());
           if (node.getLeftNode() != null && ColorComparison.isSimilarColor(node.getColor(), node.getLeftNode().getColor()))
-            stack.addFirst(node.getLeftNode());
+            queue.addLast(node.getLeftNode());
           if (node.getBottomNode() != null && ColorComparison.isSimilarColor(node.getColor(), node.getBottomNode().getColor()))
-            stack.addFirst(node.getBottomNode());
+            queue.addLast(node.getBottomNode());
           if (node.getUpNode() != null && ColorComparison.isSimilarColor(node.getColor(), node.getUpNode().getColor()))
-            stack.addFirst(node.getUpNode());
+            queue.addLast(node.getUpNode());
         }
         ns.add(node);
       }
@@ -119,5 +119,15 @@ public class SearchEngine implements Const {
             .filter(f -> ColorComparison.isSimilarColor(f.getColor(),Color.WHITE))
             .count();
     return borders.size() / 2 < numberOfWhite ? Color.WHITE : Color.BLACK;
+  }
+
+  private void separateStickySilhouettes() {
+    ArrayList<HashSet<Node>> silhouettes =
+            (ArrayList<HashSet<Node>>) silhouettesAndBackground.stream()
+                    .filter(a -> a.size() > SIZE_OBJECT
+                            && !ColorComparison.isSimilarColor(a.stream().findFirst().get().getColor()
+                            ,getBackgroundColor())).collect(Collectors.toList());
+
+
   }
 }
