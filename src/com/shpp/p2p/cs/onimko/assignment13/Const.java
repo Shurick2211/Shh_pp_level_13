@@ -14,4 +14,6 @@ public interface Const {
   int BORDER = 4;
   /**The minimum value of alpha-channel*/
   int ALPHA = 100;
+  /**The number of points for separator*/
+  int SEPARATE_NUMBER = 10;
 }

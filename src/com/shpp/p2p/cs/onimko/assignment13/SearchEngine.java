@@ -29,6 +29,7 @@ public class SearchEngine implements Const {
   public int findSilhouettes(String image) {
     HashSet<Node> nodesFind;
     ArrayList<Node> allNodes = getNodes(image);
+    separateStickySilhouettes(allNodes);
     while (!allNodes.isEmpty()) {
       nodesFind = new HashSet<>();
       bfs(allNodes.get(0), nodesFind);
@@ -121,13 +122,26 @@ public class SearchEngine implements Const {
     return borders.size() / 2 < numberOfWhite ? Color.WHITE : Color.BLACK;
   }
 
-  private void separateStickySilhouettes() {
-    ArrayList<HashSet<Node>> silhouettes =
-            (ArrayList<HashSet<Node>>) silhouettesAndBackground.stream()
-                    .filter(a -> a.size() > SIZE_OBJECT
-                            && !ColorComparison.isSimilarColor(a.stream().findFirst().get().getColor()
-                            ,getBackgroundColor())).collect(Collectors.toList());
+  private void separateStickySilhouettes(ArrayList<Node> nodes) {
+    for (Node node:nodes){
+      if (node.getUpNode() != null && !ColorComparison.isSimilarColor(node.getColor(),node.getUpNode().getColor()))
+        needSeparate(node,true);
 
+    }
+  }
 
+  private void needSeparate(Node node, boolean isDown) {
+    Node current = node;
+    for (int i = 0; i < SEPARATE_NUMBER; i++) {
+      if(isDown) {
+        if (current.getBottomNode() != null) current = current.getBottomNode();
+      } else
+      if (current.getLeftNode() != null) current = current.getLeftNode();
+    }
+    if (ColorComparison.isSimilarColor(node.getColor(), current.getColor())) return;
+    for (int i = 0; i < SEPARATE_NUMBER; i++) {
+      node.setColor(getBackgroundColor());
+      node = node.getUpNode();
+    }
   }
 }
