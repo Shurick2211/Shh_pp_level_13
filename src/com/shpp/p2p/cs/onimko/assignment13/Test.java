@@ -17,6 +17,8 @@ public class Test {
     Assignment13Part1.main(new String[]{"222.jpg"});
     System.out.print("Expect: 6   ");
     Assignment13Part1.main(new String[]{"333.jpg"});
+    System.out.print("Expect: 5   ");
+    Assignment13Part1.main(new String[]{"444.jpg"});
     /*
     System.out.print("Expect: 12   ");
     Assignment13Part1.main(new String[]{"3.jpg"});
