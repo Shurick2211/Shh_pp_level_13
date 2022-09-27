@@ -11,10 +11,11 @@ public class Test {
     Assignment13Part1.main(new String[]{"22.jpg"});
     System.out.print("Expect: 4   ");
     Assignment13Part1.main(new String[]{"test.jpg"});
-    System.out.print("Expect: 30   ");
-    Assignment13Part1.main(new String[]{"1.jpg"});
+    System.out.print("Expect: 5   ");
+    Assignment13Part1.main(new String[]{"assets/test14.png"});
     System.out.print("Expect: 20   ");
     Assignment13Part1.main(new String[]{"2.png"});
+    /*
     System.out.print("Expect: 12   ");
     Assignment13Part1.main(new String[]{"3.jpg"});
     System.out.print("Expect: 2   ");
@@ -27,8 +28,7 @@ public class Test {
     Assignment13Part1.main(new String[]{"alpha4.png"});
     System.out.print("Expect: 6   ");
     Assignment13Part1.main(new String[]{"alpha5.png"});
-
-
+     */
 
   }
 }

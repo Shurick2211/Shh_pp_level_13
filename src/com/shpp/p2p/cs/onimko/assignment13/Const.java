@@ -5,15 +5,15 @@ package com.shpp.p2p.cs.onimko.assignment13;
  */
 public interface Const {
   /**The size objects for cuts*/
-  int SIZE_OBJECT = 150;
+  int SIZE_OBJECT = 200;
   /**Step for search*/
   int STEP = 2;
   /**The contrast ratio*/
-  double CONTRAST_RATIO = 1.6;
+  double CONTRAST_RATIO = 1.5;
   /**The border for get the background color*/
   int BORDER = 4;
   /**The minimum value of alpha-channel*/
   int ALPHA = 100;
   /**The number of points for separator*/
-  int SEPARATE_NUMBER = 10;
+  int SEPARATE_NUMBER = 8;
 }
