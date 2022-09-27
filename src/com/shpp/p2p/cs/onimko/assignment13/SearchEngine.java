@@ -140,6 +140,7 @@ public class SearchEngine implements Const {
 
   /**
    * Method separates sticky silhouettes, if it needs.
+   * The method is for decomposition method separateStickySilhouettes().
    * @param node input node for separate.
    * @param isDown direction for separate,
    * true - Horizontally, false - Vertically.
