@@ -125,6 +125,10 @@ public class SearchEngine implements Const {
     return borders.size() / 2 < numberOfWhite ? Color.WHITE : Color.BLACK;
   }
 
+  /**
+   * Method finds sticky silhouettes.
+   * @param nodes input node for check.
+   */
   private void separateStickySilhouettes(ArrayList<Node> nodes) {
     for (Node node:nodes){
       if (node.getUpNode() != null && !ColorComparison.isSimilarColor(node.getColor(),node.getUpNode().getColor()))
@@ -134,6 +138,12 @@ public class SearchEngine implements Const {
     }
   }
 
+  /**
+   * Method separates sticky silhouettes.
+   * @param node input node for separate.
+   * @param isDown direction for separate,
+   * true - Horizontally, false - Vertically.
+   */
   private void separator(Node node, boolean isDown) {
     Node current = node;
     for (int i = 0; i < SEPARATE_NUMBER; i++) {
