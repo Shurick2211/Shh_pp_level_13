@@ -20,6 +20,8 @@ public class SearchEngine implements Const {
   private final ArrayList<HashSet<Node>> silhouettesAndBackground = new ArrayList<>();
   /**Array for nodes of borders for get objects color*/
   private final ArrayList<Node> borders = new ArrayList<>();
+  /**The background color*/
+  Color background;
 
   /**
    * Method looks for objects in the image.
@@ -29,6 +31,7 @@ public class SearchEngine implements Const {
   public int findSilhouettes(String image) {
     HashSet<Node> nodesFind;
     ArrayList<Node> allNodes = getNodes(image);
+    background = getBackgroundColor();
     separateStickySilhouettes(allNodes);
     while (!allNodes.isEmpty()) {
       nodesFind = new HashSet<>();
@@ -104,7 +107,7 @@ public class SearchEngine implements Const {
     return (int) silhouettesAndBackground.stream()
             .filter(a -> a.size() > SIZE_OBJECT
                     && !ColorComparison.isSimilarColor(a.stream().findFirst().get().getColor()
-                    ,getBackgroundColor())).count();
+                    ,background)).count();
   }
 
   /**
@@ -125,12 +128,13 @@ public class SearchEngine implements Const {
   private void separateStickySilhouettes(ArrayList<Node> nodes) {
     for (Node node:nodes){
       if (node.getUpNode() != null && !ColorComparison.isSimilarColor(node.getColor(),node.getUpNode().getColor()))
-        needSeparate(node,true);
-
+        separator(node,true);
+      if (node.getRightNode() != null && !ColorComparison.isSimilarColor(node.getColor(),node.getRightNode().getColor()))
+        separator(node,false);
     }
   }
 
-  private void needSeparate(Node node, boolean isDown) {
+  private void separator(Node node, boolean isDown) {
     Node current = node;
     for (int i = 0; i < SEPARATE_NUMBER; i++) {
       if(isDown) {
@@ -140,8 +144,11 @@ public class SearchEngine implements Const {
     }
     if (ColorComparison.isSimilarColor(node.getColor(), current.getColor())) return;
     for (int i = 0; i < SEPARATE_NUMBER; i++) {
-      node.setColor(getBackgroundColor());
-      node = node.getUpNode();
+      current.setColor(background);
+      if(isDown) {
+        if (current.getUpNode() != null) current = current.getUpNode();
+      } else
+      if (current.getRightNode() != null) current = current.getRightNode();
     }
   }
 }
