@@ -9,11 +9,11 @@ public interface Const {
   /**Step for search*/
   int STEP = 2;
   /**The contrast ratio*/
-  double CONTRAST_RATIO = 1.5;
+  double CONTRAST_RATIO = 1.6;
   /**The border for get the background color*/
   int BORDER = 4;
   /**The minimum value of alpha-channel*/
   int ALPHA = 100;
   /**The number of points for separator*/
-  int SEPARATE_NUMBER = 8;
+  int SEPARATE_NUMBER = 10;
 }

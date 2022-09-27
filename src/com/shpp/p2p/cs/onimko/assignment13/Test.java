@@ -13,8 +13,10 @@ public class Test {
     Assignment13Part1.main(new String[]{"test.jpg"});
     System.out.print("Expect: 5   ");
     Assignment13Part1.main(new String[]{"assets/test14.png"});
-    System.out.print("Expect: 20   ");
-    Assignment13Part1.main(new String[]{"2.png"});
+    System.out.print("Expect: 6   ");
+    Assignment13Part1.main(new String[]{"222.jpg"});
+    System.out.print("Expect: 7   ");
+    Assignment13Part1.main(new String[]{"333.jpg"});
     /*
     System.out.print("Expect: 12   ");
     Assignment13Part1.main(new String[]{"3.jpg"});
