@@ -112,7 +112,7 @@ public class SearchEngine implements Const {
 
   /**
    * Method returns the color of background of the image.
-   * @return the color of objects.
+   * @return the color of background.
    */
   private Color getBackgroundColor() {
     int numberOfAlpha = (int) borders.stream()
